@@ -1,0 +1,116 @@
+---
+title: "Atividade 1 - Faça Você mesmo"
+output: html_notebook
+---
+
+1 - Crie duas variáveis Ana e Paulo e atribua a elas valores de suas idades, sendo respectivamente 8 e 12 anos. As variáveis devem ser do tipo inteiro. Imprima no console "A menina é mais velha" ou "O menino é mais velho" como resultado de um teste lógico.
+
+
+```{r}
+Ana = 8
+Paulo = 12
+
+if(Ana > Paulo)
+{
+  print("A menina é mais velha")
+}else{
+  print("O menino é mais velho")
+}
+
+```
+2 - BOD é um objeto existente no R. Verifique qual a classe deste objeto.
+
+```{r}
+class(BOD)
+```
+3 - Crie um vetor que armazene números de 1 a 10 e posteriormente imprima os valores pares
+
+```{r}
+vetor = 1:10
+
+# Imprimir valores pares usando loop
+cat("Valores pares: ")
+for (numero in vetor) {
+  if (numero %% 2 == 0) {
+    cat(numero, " ")
+  }
+}
+```
+
+4 - women é um dataframe existente no R. Imprima as 10 últimas linhas
+
+```{r}
+tail(women, 10)
+```
+
+5 - Use a função plot do R para produzir um gráfico do atributos Sepal.Width e Petal.Length do conjunto de dados Iris. O gráfico deve imprimir apenas das linhas 50 até 100.
+
+```{r}
+# Carregar o dataset iris (já vem built-in no R)
+data(iris)
+
+# Visualizar as primeiras linhas para entender os dados
+head(iris)
+
+# Criar o gráfico com Sepal.Width vs Petal.Length
+# Apenas das linhas 50 até 100
+plot(iris$Sepal.Width[50:100], 
+     iris$Petal.Length[50:100],
+     main = "Sepal Width vs Petal Length (Linhas 50-100)",
+     xlab = "Sepal Width (cm)",
+     ylab = "Petal Length (cm)",
+     col = "blue",
+     pch = 19)
+```
+
+6 - Crie dois vetores de tamanho iguais, some as posições equivalentes dos vetores e imprima o resultado.
+
+
+```{r}
+# Criar dois vetores de tamanho igual
+vetor1 <- c(1, 2, 3, 4, 5)
+vetor2 <- c(10, 20, 30, 40, 50)
+
+# Somar posições equivalentes
+resultado <- vetor1 + vetor2
+
+# Imprimir o resultado
+print("Vetor 1:")
+print(vetor1)
+print("Vetor 2:")
+print(vetor2)
+print("Resultado da soma:")
+print(resultado)
+```
+
+7 - Imprima o número de linhas, de colunas, nomes das linhas e nom das colunas do conjunto de dados CO2.
+
+```{r}
+# Carregar o dataset CO2
+data(CO2)
+
+# Imprimir informações do dataset
+cat("========== INFORMAÇÕES DO DATASET CO2 ==========\n\n")
+
+# Número de linhas
+cat("Número de linhas:", nrow(CO2), "\n")
+
+# Número de colunas
+cat("Número de colunas:", ncol(CO2), "\n\n")
+
+# Nomes das colunas
+cat("Nomes das colunas:\n")
+print(colnames(CO2))
+
+cat("\n")
+
+# Nomes das linhas
+cat("Nomes das linhas (primeiras 20):\n")
+print(head(rownames(CO2), 20))
+
+cat("\n================================================\n")
+
+```
+
+
+
