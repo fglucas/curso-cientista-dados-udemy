@@ -1,0 +1,102 @@
+---
+  FORMAÇÃO CIENTISTA DE DADOS
+-Limpeza e Tratamento de Dados
+---
+
+```{r}
+#importa dados, string vazio como NA, string como fatores
+dados = read.csv("tempo.csv", sep=";", na.strings="", stringsAsFactors = T)
+head(dados)
+summary(dados)
+```
+Analise exploratoria
+Categoricos
+```{r}
+#Dar nomes corretos 
+#Aparencia
+counts = table(dados$Aparencia)
+barplot(counts, main="Aparencia", xlab="Aparencia")
+#Vento
+counts = table(dados$Vento)
+barplot(counts, main="Vento", xlab="Vento")
+#Jogar
+counts = table(dados$Jogar)
+barplot(counts, main="Jogar", xlab="Jogar")
+
+```
+Numericos
+```{r}
+#Temperatura
+summary(dados$Temperatura)
+boxplot(dados$Temperatura)
+hist(dados$Temperatura)
+```
+```{r}
+#Umidade
+summary(dados$Umidade)
+boxplot(dados$Umidade)
+hist(dados$Umidade)
+```
+Normalização Dados
+```{r}
+#Valores faltantes NAs
+dados[!complete.cases(dados),]
+```
+Valores númericos
+```{r}
+#para valores númericos com NA, se nomina a médiana.
+#Umidade
+summary(dados$Umidade)
+#mediana
+median(dados$Umidade, na.rm=T)
+#atribuir mediana a NAs
+dados[is.na(dados$Umidade),]$Umidade = median(dados$Umidade, na.rm= T)
+#buscar NAs em umidade para checar
+dados[!complete.cases(dados$Umidade)]
+```
+Valores categoricos
+```{r}
+#Ver Valores
+unique(dados$Vento)
+summary(dados$Vento)
+#Transformar "" em FALSO(maioria)
+dados[is.na(dados$Vento),] $Vento = "FALSO"
+#Ver resultado
+summary(dados$Vento)
+```
+Coluna Aparencia
+```{r}
+#Ver Valores
+summary(dados$Aparencia)
+#Transformar "menos" em sol(maioria)
+dados[dados$Aparencia == "menos",]$Aparencia = "sol"
+#Remover fatores não usados
+dados$Aparencia = factor(dados$Aparencia)
+#Ver resultado
+summary(dados$Aparencia)
+```
+Fora do dominio
+```{r}
+#Temperatura
+summary(dados$Temperatura)
+dados[dados$Temperatura<0 | dados$Temperatura>85,] $Temperatura
+#opção preencher com mediana
+median(dados$Temperatura)
+#substituição
+dados[dados$Temperatura<0 | dados$Temperatura>85,] $Temperatura = median(dados$Temperatura)
+#buscamos novamente
+summary(dados$Temperatura)
+```
+```{r}
+#Umidade
+summary(dados$Umidade)
+dados[dados$Umidade<0 | dados$Umidade>95,] $Umidade
+#opção preencher com mediana
+median(dados$Umidade)
+#substituição
+dados[dados$Umidade<0 | dados$Umidade>95,] $Umidade = median(dados$Umidade)
+#buscamos novamente
+summary(dados$Umidade)
+```
+
+Finalizado.
